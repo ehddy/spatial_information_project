@@ -1,12 +1,12 @@
-import pandas as pd
-import numpy as np
-import time
 
 
 class Industry_Analysis():
     """
     0.1 초기 설정 
     """
+
+  
+
 
     def __init__(self, total_data, total_data_domestic, employ_data, metrix_num, year):
         self.total_data = total_data
@@ -47,6 +47,8 @@ class Industry_Analysis():
 
     # 2015~2019년 전체 산업 규모
     def total_industry_scale(self):
+        import pandas as pd 
+        import numpy as np
         data_list = []
         year = self.year
         for data in self.total_data:
@@ -86,6 +88,8 @@ class Industry_Analysis():
 
     # 연도별 전체 산업 규모
     def industry_scale(self):
+        import pandas as pd 
+        import numpy as np
         total_struc_data = []
 
         for data in self.total_data:
@@ -145,6 +149,8 @@ class Industry_Analysis():
 
     # 연도별 특정 산업의 규모변화
     def special_industry_scale(self):
+        import pandas as pd 
+        import numpy as np
 
         special_industry_scale_list = []
         special_industry_scale_list_per = []
@@ -222,6 +228,8 @@ class Industry_Analysis():
     # 1) 경제적 구조
 
     def economic_struc_data(self):
+        import pandas as pd 
+        import numpy as np
 
         industry_name = self.index_name
 
@@ -266,6 +274,8 @@ class Industry_Analysis():
 
     # 특정 산업 경제적 구조의 변화
     def special_economic_struc_change(self):
+        import pandas as pd 
+        import numpy as np
         df = pd.DataFrame(data=[], columns=['산업명', '연도', '중간투입률',
                           '부가가치율', '중간수요율', '최종수요율', '수출율', '수입계수'])
 
@@ -308,6 +318,8 @@ class Industry_Analysis():
 
     # 생산유발계수 행렬
     def input_prod_coeff(self):
+        import pandas as pd 
+        import numpy as np
         total_prod_metrix = []
         for data, domestic_data in zip(self.total_data, self.total_data_domestic):
             input_metrix = domestic_data.iloc[:, :self.metrix_num] / \
@@ -332,6 +344,8 @@ class Industry_Analysis():
 
     # 산업별 생산유발계수
     def prod_effect_tabel(self):
+        import pandas as pd 
+        import numpy as np
         input_prod_data = self.input_prod_coeff()
         year = self.year
         df = pd.DataFrame(data=[], index=self.index_name)
@@ -354,6 +368,8 @@ class Industry_Analysis():
         return forward_count
 
     def back_forward_table(self):
+        import pandas as pd 
+        import numpy as np 
         total_prod_metrix = self.input_prod_coeff()
         year = self.year
         back_forward_name = ['영향력 계수', '감응도 계수']
@@ -386,6 +402,8 @@ class Industry_Analysis():
     # 부가가치유발효과 행렬
 
     def added_value_coeff_metrix(self):
+        import numpy as np
+        import pandas as pd
 
         total_added_value_coeff = []
         input_prod_metrix = self.input_prod_coeff()
@@ -419,6 +437,7 @@ class Industry_Analysis():
     # 산업별 부가가치유발효과
 
     def added_value_coeff_result(self):
+        import pandas as pd 
         total_added_value_metrix = self.added_value_coeff_metrix()
         year = self.year
         df = pd.DataFrame(data=[], index=self.index_name)
@@ -432,6 +451,7 @@ class Industry_Analysis():
     # 3) 노동유발효과
     # 산업별 총 산출액
     def total_input_prod_table(self):
+        import pandas as pd 
         year = self.year
 
         df = pd.DataFrame(data=[], index=self.index_name)
@@ -445,6 +465,7 @@ class Industry_Analysis():
     # 산업별 취업계수 및 고용계수 테이블
 
     def employ_coef(self):
+        import pandas as pd 
         year = self.year
         employ_data = self.employ_data
         df = pd.DataFrame(data=[], columns=[f'취업계수_{year}', f'고용계수_{year}', f'취업계수_{year+1}', f'고용계수_{year+1}', f'취업계수_{year+2}',
@@ -467,6 +488,7 @@ class Industry_Analysis():
 
     # 산업별 취업,고용유발계수 행렬
     def employ_coef_metrix(self):
+        import pandas as pd 
         year = self.year
         # 생산유발계수 행렬
         total_prod_metrix = self.input_prod_coeff()
@@ -510,6 +532,7 @@ class Industry_Analysis():
 
     # 노동, 고용유발계수
     def employ_coef_table(self):
+        import pandas as pd 
         employ_coef_metrix_c = self.employ_coef_metrix()[0]
         employ_coef_metrix_p = self.employ_coef_metrix()[1]
         year = self.year
@@ -526,6 +549,7 @@ class Industry_Analysis():
 
     # 산업별 취업 및 고용유발효과
     def total_employ_coef_table(self):
+        import pandas as pd 
         total_c_table = self.employ_coef_table()[0]
         total_p_table = self.employ_coef_table()[1]
 
