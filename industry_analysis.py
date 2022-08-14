@@ -5,7 +5,6 @@ class Industry_Analysis():
     0.1 초기 설정 
     """
 
-  
 
 
     def __init__(self, total_data, total_data_domestic, employ_data, metrix_num, year):
